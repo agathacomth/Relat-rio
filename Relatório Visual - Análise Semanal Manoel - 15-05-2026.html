@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Análise Semanal Manoel Machado — 15/05/2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --offwhite:#f1f3e6;
+    --laranja:#fc7f48;
+    --verde:#104438;
+    --azul:#0c3d64;
+    --verde-claro:#1d6b58;
+    --texto:#22322c;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:'Montserrat',sans-serif;
+    background:var(--offwhite);
+    color:var(--texto);
+    line-height:1.6;
+    padding:32px 16px;
+  }
+  .wrap{max-width:880px;margin:0 auto;}
+
+  /* Header */
+  .hero{
+    background:var(--verde);
+    color:var(--offwhite);
+    border-radius:20px;
+    padding:40px 38px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    right:-60px;top:-60px;
+    width:220px;height:220px;
+    background:var(--laranja);
+    opacity:.18;
+    border-radius:50%;
+  }
+  .hero .tag{
+    display:inline-block;
+    background:var(--laranja);
+    color:#fff;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    padding:6px 14px;
+    border-radius:20px;
+    margin-bottom:16px;
+  }
+  .hero h1{
+    font-size:30px;
+    font-weight:800;
+    line-height:1.25;
+    margin-bottom:8px;
+  }
+  .hero p{font-size:15px;opacity:.85;font-weight:400;}
+
+  /* Section */
+  section{margin-top:34px;}
+  .sec-head{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .sec-num{
+    flex:none;
+    width:34px;height:34px;
+    background:var(--azul);
+    color:#fff;
+    border-radius:10px;
+    display:flex;align-items:center;justify-content:center;
+    font-weight:800;font-size:15px;
+  }
+  .sec-head h2{
+    font-size:21px;
+    font-weight:800;
+    color:var(--verde);
+  }
+  .card{
+    background:#fff;
+    border-radius:16px;
+    padding:26px 28px;
+    box-shadow:0 2px 14px rgba(16,68,56,.06);
+  }
+  .card + .card{margin-top:14px;}
+
+  p.body{margin-bottom:12px;font-size:15px;}
+  p.body:last-child{margin-bottom:0;}
+  strong{color:var(--verde);font-weight:700;}
+  .hl{color:var(--laranja);font-weight:700;}
+
+  /* Stat row */
+  .stat-row{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+    margin-bottom:18px;
+  }
+  .stat{
+    flex:1;
+    min-width:150px;
+    background:var(--azul);
+    color:#fff;
+    border-radius:14px;
+    padding:18px 20px;
+  }
+  .stat .num{font-size:30px;font-weight:800;line-height:1;}
+  .stat .lbl{font-size:12.5px;opacity:.82;margin-top:6px;font-weight:500;}
+  .stat.alt{background:var(--laranja);}
+  .stat.alt2{background:var(--verde);}
+
+  /* Bar chart */
+  .bars{margin-top:6px;}
+  .bar-line{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:9px;
+  }
+  .bar-line .day{
+    flex:none;width:118px;
+    font-size:13px;font-weight:600;
+    color:var(--azul);
+  }
+  .bar-track{flex:1;background:var(--offwhite);border-radius:8px;height:26px;overflow:hidden;}
+  .bar-fill{
+    height:100%;
+    background:var(--verde);
+    border-radius:8px;
+    display:flex;align-items:center;
+    justify-content:flex-end;
+    padding-right:9px;
+    color:#fff;font-size:12.5px;font-weight:700;
+    min-width:32px;
+  }
+  .bar-fill.peak{background:var(--laranja);}
+
+  /* Origem list */
+  .origem{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:13px 0;
+    border-bottom:1px solid #eef0e2;
+  }
+  .origem:last-child{border-bottom:none;}
+  .origem .pill{
+    flex:none;
+    background:var(--offwhite);
+    color:var(--verde);
+    font-weight:700;
+    font-size:13px;
+    padding:6px 12px;
+    border-radius:20px;
+  }
+  .origem .qt{
+    flex:none;
+    font-size:20px;font-weight:800;color:var(--azul);
+    width:62px;text-align:right;
+  }
+  .origem .desc{font-size:13.5px;}
+
+  /* Ranked items */
+  .rank{
+    display:flex;
+    gap:16px;
+    margin-bottom:16px;
+  }
+  .rank:last-child{margin-bottom:0;}
+  .rank .medal{
+    flex:none;
+    width:40px;height:40px;
+    border-radius:12px;
+    background:var(--verde);
+    color:#fff;
+    font-weight:800;font-size:18px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .rank h3{font-size:15.5px;color:var(--verde);margin-bottom:3px;}
+  .rank .kw{
+    display:inline-block;
+    background:var(--laranja);color:#fff;
+    font-size:10.5px;font-weight:700;letter-spacing:.5px;
+    padding:2px 8px;border-radius:6px;
+    margin-left:6px;vertical-align:middle;
+  }
+  .rank p{font-size:13.8px;}
+
+  /* Callout (gargalo) */
+  .callout{
+    background:#fff;
+    border-left:6px solid var(--laranja);
+    border-radius:12px;
+    padding:22px 26px;
+  }
+  .callout h3{color:var(--verde);font-size:17px;margin-bottom:8px;}
+
+  /* Copy block */
+  .copybox{
+    background:var(--offwhite);
+    border:1px dashed var(--verde-claro);
+    border-radius:12px;
+    padding:16px 18px;
+    font-size:14px;
+    font-style:italic;
+    color:var(--verde);
+    margin:10px 0 14px;
+  }
+  .micro{
+    font-size:11px;font-weight:700;letter-spacing:1px;
+    text-transform:uppercase;color:var(--laranja);
+    margin-bottom:5px;display:block;
+  }
+
+  /* Tables */
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:4px;}
+  th{
+    background:var(--verde);color:#fff;
+    text-align:left;padding:9px 12px;font-size:12px;
+    font-weight:700;letter-spacing:.4px;
+  }
+  th:first-child{border-radius:8px 0 0 0;}
+  th:last-child{border-radius:0 8px 0 0;}
+  td{padding:9px 12px;border-bottom:1px solid #eef0e2;vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  td .at{font-weight:700;color:var(--azul);}
+  .temp{
+    font-size:10.5px;font-weight:700;
+    padding:2px 7px;border-radius:5px;color:#fff;
+    white-space:nowrap;
+  }
+  .t-hot{background:var(--laranja);}
+  .t-warm{background:#e0a93b;}
+
+  /* Temperatura cards */
+  .temp-grid{display:flex;gap:12px;flex-wrap:wrap;}
+  .temp-card{
+    flex:1;min-width:200px;
+    border-radius:12px;padding:16px 18px;
+    background:var(--offwhite);
+  }
+  .temp-card .th{font-weight:800;font-size:14px;margin-bottom:5px;}
+  .temp-card.hot{border-top:4px solid var(--laranja);}
+  .temp-card.warm{border-top:4px solid #e0a93b;}
+  .temp-card.cold{border-top:4px solid var(--azul);}
+  .temp-card p{font-size:12.8px;}
+
+  .avatar-item{
+    padding:11px 0;
+    border-bottom:1px solid #eef0e2;
+    font-size:13.8px;
+  }
+  .avatar-item:last-child{border-bottom:none;}
+  .avatar-item b{color:var(--azul);}
+
+  .note{
+    margin-top:14px;
+    font-size:12.5px;
+    background:var(--azul);
+    color:#fff;
+    padding:11px 16px;
+    border-radius:10px;
+  }
+
+  footer{
+    text-align:center;
+    margin-top:36px;
+    font-size:12px;
+    color:var(--verde-claro);
+    opacity:.8;
+  }
+  @media(max-width:560px){
+    .hero{padding:30px 24px;}
+    .hero h1{font-size:24px;}
+    .card{padding:20px;}
+    .bar-line .day{width:92px;font-size:12px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <span class="tag">Análise Semanal · Automações + Comercial</span>
+    <h1>Manoel Machado — Relatório da Semana</h1>
+    <p>08/05 a 15/05/2026 · gerado em 15/05/2026 (sexta) · dados extraídos do Unnichat</p>
+  </div>
+
+  <!-- 1 -->
+  <section>
+    <div class="sec-head">
+      <div class="sec-num">1</div>
+      <h2>Visão geral da semana</h2>
+    </div>
+    <div class="card">
+      <div class="stat-row">
+        <div class="stat">
+          <div class="num">189</div>
+          <div class="lbl">leads capturados (08–15/05)</div>
+        </div>
+        <div class="stat alt2">
+          <div class="num">~24</div>
+          <div class="lbl">média de leads por dia</div>
+        </div>
+        <div class="stat alt">
+          <div class="num">56</div>
+          <div class="lbl">leads só no dia da aula (07/05)</div>
+        </div>
+      </div>
+
+      <div class="bars">
+        <div class="bar-line"><span class="day">07/05 · aula</span><div class="bar-track"><div class="bar-fill peak" style="width:100%">56</div></div></div>
+        <div class="bar-line"><span class="day">08/05 · qui</span><div class="bar-track"><div class="bar-fill" style="width:52%">29</div></div></div>
+        <div class="bar-line"><span class="day">09/05 · sex</span><div class="bar-track"><div class="bar-fill" style="width:38%">21</div></div></div>
+        <div class="bar-line"><span class="day">10/05 · sáb</span><div class="bar-track"><div class="bar-fill" style="width:32%">18</div></div></div>
+        <div class="bar-line"><span class="day">11/05 · dom</span><div class="bar-track"><div class="bar-fill" style="width:52%">29</div></div></div>
+        <div class="bar-line"><span class="day">12/05 · seg</span><div class="bar-track"><div class="bar-fill" style="width:63%">35</div></div></div>
+        <div class="bar-line"><span class="day">13/05 · ter</span><div class="bar-track"><div class="bar-fill" style="width:43%">24</div></div></div>
+        <div class="bar-line"><span class="day">14/05 · qua</span><div class="bar-track"><div class="bar-fill" style="width:41%">23</div></div></div>
+        <div class="bar-line"><span class="day">15/05 · sex*</span><div class="bar-track"><div class="bar-fill" style="width:18%">10</div></div></div>
+      </div>
+      <p class="body" style="margin-top:14px;font-size:13px;opacity:.8;">*15/05 parcial, contagem até ~14h.</p>
+    </div>
+    <div class="card">
+      <span class="micro">Comparativo</span>
+      <p class="body">O dia <strong>07/05 — dia da aula ao vivo — fez 56 leads em 24h</strong>, mais que o dobro da média da semana seguinte. A aula é o motor de topo de funil. A semana 08–15/05 é a <span class="hl">"ressaca" da aula</span>: volume saudável e constante, mas sem novo pico. Sem um novo evento ou campanha, o topo tende a se manter nesse platô de ~24/dia.</p>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section>
+    <div class="sec-head">
+      <div class="sec-num">2</div>
+      <h2>Distribuição por isca / origem</h2>
+    </div>
+    <div class="card">
+      <p class="body" style="font-size:13px;opacity:.8;margin-bottom:14px;">Tags acumuladas — mostram de onde o lead veio.</p>
+      <div class="origem">
+        <span class="qt">1.043</span>
+        <span class="pill">#convite aula</span>
+        <span class="desc">Convidados para a aula de 07/05 (campanha do evento).</span>
+      </div>
+      <div class="origem">
+        <span class="qt">~38</span>
+        <span class="pill">#grupo abril</span>
+        <span class="desc">Pediram entrada no Grupo dos Dissecadores.</span>
+      </div>
+      <div class="origem">
+        <span class="qt">24</span>
+        <span class="pill">#cronograma abril</span>
+        <span class="desc">Receberam o Cronograma IF (PDF).</span>
+      </div>
+      <div class="origem">
+        <span class="qt">30</span>
+        <span class="pill">#clicou na aula abril</span>
+        <span class="desc"><strong>Clicaram para assistir a aula — o sinal mais quente da base.</strong></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section>
+    <div class="sec-head">
+      <div class="sec-num">3</div>
+      <h2>Top 3 automações performando melhor</h2>
+    </div>
+    <div class="card">
+      <div class="rank">
+        <div class="medal">1</div>
+        <div>
+          <h3>Chamada Grupo <span class="kw">GRUPO</span></h3>
+          <p class="body"><strong>Taxa de clique de 87%</strong> — a melhor de toda a operação. 45 entraram, 39 clicaram em "Sim, quero", 40 receberam o acesso ao grupo. Converte porque a promessa é clara e a barreira é baixa.</p>
+        </div>
+      </div>
+      <div class="rank">
+        <div class="medal">2</div>
+        <div>
+          <h3>Gatilho mapa (feed) <span class="kw">MAPA</span></h3>
+          <p class="body"><strong>Maior volume da operação.</strong> 952 pessoas entraram pela isca do Mapa das Vagas IF, 697 clicaram em "Sim, pode mandar" (73% de clique no topo). É o maior funil de captação que existe hoje.</p>
+        </div>
+      </div>
+      <div class="rank">
+        <div class="medal">3</div>
+        <div>
+          <h3>Gatilho cronograma e convite aula <span class="kw">CRONOGRAMA</span></h3>
+          <p class="body"><strong>Único funil de isca que entrega de ponta a ponta.</strong> 42 entraram, 26 clicaram para receber o material (62%), 27 receberam o Cronograma IF.pdf, 25 receberam o convite da aula e <span class="hl">17 leads foram roteados para atendente</span>. Serve de modelo pra consertar as outras iscas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section>
+    <div class="sec-head">
+      <div class="sec-num">4</div>
+      <h2>Gargalo da semana: faltam aulas curtas</h2>
+    </div>
+    <div class="callout">
+      <h3>Não existe conteúdo de topo entre um evento e outro</h3>
+      <p class="body">A aula de 07/05 provou o ponto: <strong>um evento sozinho fez 56 leads em um dia</strong>, contra ~24/dia no resto da semana. Mas é só isso — uma aula grande, esporádica, e depois o topo de funil cai pro platô. <span class="hl">Falta um fluxo constante de aulas curtas, com temas diferentes</span>, alimentando o topo todos os dias.</p>
+      <p class="body">A live do dia 07/05 já é matéria-prima pronta: dá pra <strong>cortá-la em vários vídeos curtos</strong>, cada um com um tema próprio — panorama de bancas, movimentação de vagas na Rede Federal, salário e RSC, padrão de questão dos IFs, expansão dos institutos. Cada corte vira um mini-ímã de topo de funil, com a mesma palavra-chave de sempre puxando pra automação.</p>
+      <p class="body" style="margin-bottom:0;"><strong>Encaminhamento:</strong> transformar a live de 07/05 em 5–6 cortes temáticos e publicar de forma espaçada ao longo das próximas semanas, em vez de depender do próximo grande evento pra reativar o topo.</p>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section>
+    <div class="sec-head">
+      <div class="sec-num">5</div>
+      <h2>Plano de ação</h2>
+    </div>
+    <div class="card">
+      <span class="micro">Problema prioritário</span>
+      <h3 style="color:var(--verde);font-size:17px;margin-bottom:10px;">Funil morto das iscas GUIA e LDB</h3>
+      <p class="body"><strong>O que mudar:</strong> o fluxo dessas iscas termina na mensagem do link de download — sem nutrição, sem convite pra aula, sem roteamento pro comercial. Conectar o "Próximo passo" do download a uma sequência de nutrição, reaproveitando a estrutura que já existe no Gatilho cronograma: delay curto → convite da aula → pergunta sobre o método → roteamento pro atendente.</p>
+      <span class="micro">Nova versão pronta pra colar — entra 15 min após o link de download</span>
+      <div class="copybox">"Prof., tô passando aqui de novo rapidinho. 🎯 Você já tem o material em mãos — mas material parado não muda nada. O que muda o jogo é o método por trás dele. Eu gravei uma aula de 20 minutos mostrando o Plano de 3 Passos que separa quem só acumula conteúdo de quem realmente conquista a estabilidade no IF. Posso te enviar o link da aula aqui? [ Quero a aula ] [ Agora não ]"</div>
+      <p class="body"><strong>Hipótese:</strong> quem pede o material tem intenção. Sem nutrição, 100% esfria. O Gatilho cronograma prova que o mesmo público, com o funil completo, gera 17 leads roteados pro comercial.</p>
+      <p class="body" style="margin-bottom:0;"><strong>Como medir:</strong> % de leads que chegam à pergunta sobre o método em até 7 dias após entrar na isca. Meta: sair de 0% para ≥15% em 2 semanas.</p>
+    </div>
+
+    <div class="card">
+      <span class="micro">Nova automação 1</span>
+      <h3 style="color:var(--verde);font-size:16px;margin-bottom:4px;">Resgate 72h — material entregue, lead sumiu</h3>
+      <p class="body" style="font-size:13.5px;"><b>Objetivo:</b> reativar quem recebeu uma isca mas não avançou em 72h. <b>Gatilho:</b> contato com tag de isca e sem #clicou na aula abril, 72h após a entrada. <b>CTA final:</b> palavra-chave MÉTODO ou DISSECAR.</p>
+      <span class="micro">Sequência (copy pronta)</span>
+      <div class="copybox" style="margin-bottom:8px;"><b>Msg 1 (imediata):</b> "Prof., 72 horas atrás você pegou um material com a gente. Posso ser direta? Material sozinho não muda rotina nenhuma. 😅 O que muda é ter um método. Quer que eu te mostre o caminho?"</div>
+      <div class="copybox" style="margin-bottom:8px;"><b>Msg 2 (+1 dia):</b> "Lembra da Marinete? Ela era professora como você, com a mesma rotina apertada. Hoje é servidora no IFAM. A diferença não foi quantidade de conteúdo — foi dissecar questão com método. Te conto como em 20 min?"</div>
+      <div class="copybox" style="margin-bottom:8px;"><b>Msg 3 (+2 dias):</b> "Sei que a vida de professor é corrida. Então vou facilitar: responde MÉTODO aqui embaixo e a automação te chama no privado em 60 segundos pra te mostrar o próximo passo. Sem enrolação."</div>
+      <div class="copybox" style="margin-bottom:0;"><b>Msg 4 (+3 dias, última):</b> "Última vez que te chamo por aqui, Prof. 💚 Se você quer parar de juntar PDF e começar a construir de verdade a sua conquista da estabilidade no IF, o convite tá de pé. Responde DISSECAR quando quiser começar."</div>
+    </div>
+
+    <div class="card">
+      <span class="micro">Nova automação 2</span>
+      <h3 style="color:var(--verde);font-size:16px;margin-bottom:4px;">Reativação 14 dias — lead frio</h3>
+      <p class="body" style="font-size:13.5px;"><b>Objetivo:</b> reaquecer leads sem interação há 14 dias antes de virarem base morta. <b>Gatilho:</b> última interação > 14 dias, sem tag de cliente. <b>CTA final:</b> palavra-chave MÉTODO (entrada no Grupo dos Dissecadores).</p>
+      <span class="micro">Sequência (copy pronta)</span>
+      <div class="copybox" style="margin-bottom:8px;"><b>Msg 1:</b> "Prof., sumiu! 👀 Mas eu não esqueci de você. Enquanto isso, a Rede Federal não parou: tem movimentação nova de vagas rolando. Quer que eu te atualize?"</div>
+      <div class="copybox" style="margin-bottom:8px;"><b>Msg 2 (+2 dias):</b> "Deixa eu te perguntar uma coisa sincera: o que te travou? Falta de tempo? Estudo desorganizado? Cansaço de método que não funciona? Me conta — porque pra cada um desses tem uma saída com estratégia."</div>
+      <div class="copybox" style="margin-bottom:8px;"><b>Msg 3 (+3 dias):</b> "O problema nunca foi o conteúdo, Prof. É o método. É exatamente por isso que existe o Grupo dos Dissecadores — gente que decidiu parar de decorar e começar a dissecar questão. Quer entrar? Responde MÉTODO."</div>
+      <div class="copybox" style="margin-bottom:0;"><b>Msg 4 (+4 dias):</b> "Quando você estiver pronta pra retomar a sua jornada estratégica rumo ao IF, é só dar um oi aqui. A porta tá aberta. 💚"</div>
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section>
+    <div class="sec-head">
+      <div class="sec-num">6</div>
+      <h2>Direcionamento comercial</h2>
+    </div>
+    <div class="card">
+      <p class="body" style="margin-bottom:16px;">Foco da semana: os leads com o sinal mais quente da base — <strong>clicaram para assistir a aula</strong> (#clicou na aula abril) — dentro da janela de 7 dias. São 16 nomes, mais 5 mornos que pegaram o Cronograma IF.</p>
+
+      <span class="micro" style="color:var(--laranja);">🔥 Leads quentes — clicaram a aula nos últimos 7 dias</span>
+      <table>
+        <tr><th>Lead</th><th>Entrou</th><th>Por que é prioridade</th></tr>
+        <tr><td><span class="at">@figueiredo.vanessaa</span></td><td>14/05</td><td>Clicou a aula ontem — quentíssimo</td></tr>
+        <tr><td><span class="at">@ana_schulli</span></td><td>14/05</td><td>Clicou a aula ontem — quentíssimo</td></tr>
+        <tr><td><span class="at">@leticiazoby</span></td><td>13/05</td><td>Clicou a aula há 2 dias — janela ideal</td></tr>
+        <tr><td><span class="at">@resiina</span></td><td>13/05</td><td>Clicou a aula há 2 dias — janela ideal</td></tr>
+        <tr><td><span class="at">@prof.vivianpereira</span></td><td>13/05</td><td>Username "prof." — provável professora, perfil cheio do avatar</td></tr>
+        <tr><td><span class="at">@barbarasique</span></td><td>13/05</td><td>Clicou a aula há 2 dias</td></tr>
+        <tr><td><span class="at">@paulo.abe</span></td><td>12/05</td><td>Clicou a aula há 3 dias</td></tr>
+        <tr><td><span class="at">@luarpe_s</span></td><td>12/05</td><td>Clicou a aula há 3 dias</td></tr>
+        <tr><td><span class="at">@ameliapaes</span></td><td>11/05</td><td>Clicou a aula — abordar antes de esfriar</td></tr>
+        <tr><td><span class="at">@marco_docruzeiro9719</span></td><td>11/05</td><td>Clicou a aula — abordar antes de esfriar</td></tr>
+        <tr><td><span class="at">@cs__tshirts</span></td><td>10/05</td><td>Clicou a aula — esfriando</td></tr>
+        <tr><td><span class="at">@guilhermegalvaolopes</span></td><td>09/05</td><td>Clicou a aula — esfriando</td></tr>
+        <tr><td><span class="at">@adrienenascimento</span></td><td>08/05</td><td>Clicou a aula — última chamada</td></tr>
+        <tr><td><span class="at">@tatyquinteroq</span></td><td>08/05</td><td>Clicou a aula — última chamada</td></tr>
+        <tr><td><span class="at">@ernestina_rita</span></td><td>08/05</td><td>Clicou a aula — última chamada</td></tr>
+        <tr><td><span class="at">@samu.smiranda</span></td><td>08/05</td><td>Clicou a aula — última chamada</td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <span class="micro" style="color:#e0a93b;">🌤️ Leads mornos — pegaram o Cronograma IF nos últimos 7 dias</span>
+      <table>
+        <tr><th>Lead</th><th>Entrou</th><th>Por que é prioridade</th></tr>
+        <tr><td><span class="at">@clara_meira21</span></td><td>14/05</td><td>Pegou o Cronograma IF ontem — intenção de planejamento</td></tr>
+        <tr><td><span class="at">@angelamichelato</span></td><td>12/05</td><td>Pegou o Cronograma IF — nutrir rumo à aula</td></tr>
+        <tr><td><span class="at">@remybranco</span></td><td>08/05</td><td>Pegou o Cronograma IF — nutrir rumo à aula</td></tr>
+        <tr><td><span class="at">@elisabete.barbosaa</span></td><td>08/05</td><td>Pegou o Cronograma IF — nutrir rumo à aula</td></tr>
+        <tr><td><span class="at">@anacarol.botelho</span></td><td>08/05</td><td>Pegou o Cronograma IF — nutrir rumo à aula</td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <span class="micro">Ângulo de abordagem por temperatura</span>
+      <div class="temp-grid">
+        <div class="temp-card hot">
+          <div class="th" style="color:var(--laranja);">QUENTE</div>
+          <p>Já viu (ou abriu) a aula do Plano de 3 Passos. A abordagem não é "assista a aula", é "e aí, o que achou? bora transformar isso em plano?". Puxar direto pra sondagem dos 4 avatars.</p>
+        </div>
+        <div class="temp-card warm">
+          <div class="th" style="color:#c8901f;">MORNO</div>
+          <p>Tem intenção de planejamento mas ainda não consumiu a aula. A abordagem é levar pra aula primeiro — ela é a ponte. Só depois falar de produto.</p>
+        </div>
+        <div class="temp-card cold">
+          <div class="th" style="color:var(--azul);">FRIO</div>
+          <p>Base antiga, sem interação recente. Não citar produto. Reaquecer com a crença da marca e o convite pro Grupo dos Dissecadores.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="micro">Mensagens prontas pra colar</span>
+      <span class="micro" style="color:var(--laranja);margin-top:8px;">Template quente</span>
+      <div class="copybox">"Oi, Prof.! Vi que você assistiu (ou começou a assistir) a aula do Plano de 3 Passos. 🎯 Deixa eu te perguntar direto: o que mais te chamou atenção? Pergunto porque, dependendo do seu momento — se você é substituto, se já é mestre/doutor e trava na prova, se tem pouco tempo, ou se tá se antecipando ao edital — o caminho muda. Me conta sua situação em 1 frase que eu te mostro exatamente por onde começar a sua conquista da estabilidade no IF."</div>
+      <span class="micro" style="color:#c8901f;">Template morno</span>
+      <div class="copybox">"Oi, Prof.! Vi que você pegou o Cronograma IF com a gente — ótimo primeiro passo. 📌 Mas o cronograma é o mapa; o que move de verdade é entender o método por trás. Tem uma aula de 20 minutos onde o Manoel mostra o Plano de 3 Passos: por que 90% trava na prova mesmo dominando o conteúdo. Posso te mandar o link? Depois dela a gente conversa sobre o seu próximo passo."</div>
+      <span class="micro" style="color:var(--azul);">Template frio</span>
+      <div class="copybox" style="margin-bottom:0;">"Oi, Prof.! 💚 Faz um tempinho que a gente não se fala. Sem cobrança nenhuma — só queria te lembrar de uma coisa: o problema nunca foi o conteúdo, é o método. Se um dia você quiser voltar a olhar pra sua jornada rumo ao IF com estratégia de verdade, a gente tem o Grupo dos Dissecadores te esperando. É só responder MÉTODO aqui."</div>
+    </div>
+
+    <div class="card">
+      <span class="micro">Ângulo de venda por avatar</span>
+      <p class="body" style="font-size:13px;opacity:.8;margin-bottom:10px;">A conversa passa pela Sondagem dos 4 Avatars. O argumento matador muda por perfil — a oferta em si fica a critério do comercial.</p>
+      <div class="avatar-item"><b>O Substituto</b> (contrato instável) — método pra quem nunca passou ou reprovou uma vez só; passo a passo do zero.</div>
+      <div class="avatar-item"><b>O Mestre/Doutor Frustrado</b> (sabe o conteúdo, trava na prova) — 90% dos qualificados reprovam por armadilha de banca; o método ensina a dissecar a banca.</div>
+      <div class="avatar-item"><b>O Sobrecarregado</b> (40h+ de trabalho) — a maioria dos aprovados estuda 1–2h/dia; o segredo é zero desperdício, não muito tempo.</div>
+      <div class="avatar-item"><b>O Pré-Edital</b> (quer largar na frente) — quem começa antes tem 5x mais chance; material correto é o Cronograma de Editais.</div>
+      <div class="note">Lembrete de processo: "marcar conversa rápida" = áudio/call dentro do Instagram. <b>Não migrar pro WhatsApp.</b></div>
+    </div>
+  </section>
+
+  <footer>
+    Manoel Machado · Análise Semanal de Automações + Comercial · 15/05/2026
+  </footer>
+
+</div>
+</body>
+</html>
